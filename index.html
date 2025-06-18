@@ -1,1 +1,44 @@
-﻿<img src="assets/img/lemon.jpg" style="width: 100%;">
+﻿<div style="
+width: 100%;
+height: 100%;
+background-image: url('assets/img/dumbass.jpg');
+background-size: cover;
+justify-content: center;
+display: flex;
+align-items: center;
+">
+
+    <img src="assets/img/lemon.jpg" style="height: 1%; width: 1%" id="yuzu">
+
+
+</div>
+
+
+
+<script>
+
+    function upTheYuzu() {
+        yuzu.style.height = h + "%";
+        yuzu.style.width = w + "%";
+
+        let rnd = Math.floor(Math.random() * 100);
+        if(rnd < 50)
+            h++;
+        else
+            w++;
+
+        if(h > 100)
+            h = 1;
+        if(w > 100)
+            w = 1;
+
+        setTimeout(upTheYuzu, 10);
+    }
+
+
+    let yuzu = document.getElementById("yuzu");
+    let h = 1;
+    let w = 1;
+    upTheYuzu();
+
+</script>
