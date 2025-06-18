@@ -6,7 +6,10 @@ background-size: cover;
 justify-content: center;
 display: flex;
 align-items: center;
-">
+"
+
+     id="main"
+>
 
     <img src="assets/img/lemon.jpg" style="height: 1%; width: 1%" id="yuzu">
 
@@ -16,29 +19,65 @@ align-items: center;
 
 
 <script>
+    let img = new Image();
+    img.src = "/assets/img/umaexe.png";
+
+    let spoop = false;
+
+    function scareJump(){
+        console.log("jump");
+
+        yuzu.style.display = "none";
+
+        let rnd = Math.floor(Math.random() * 100);
+        let rnd2 = Math.floor(Math.random() * 500);
+
+        spoop = true;
+        setTimeout(function (){
+            //set img as bg
+            main.style.backgroundImage = `url(${img.src})`;
+            setTimeout(function (){
+                main.style.backgroundImage = 'url(/assets/img/dumbass.jpg)'
+                yuzu.style.display = "block";
+                spoop = false;
+            }, rnd2)
+        }, rnd);
+
+    }
 
     function upTheYuzu() {
         yuzu.style.height = h + "%";
         yuzu.style.width = w + "%";
 
-        let rnd = Math.floor(Math.random() * 100);
-        if(rnd < 50)
-            h++;
-        else
-            w++;
+        let rnd1 = Math.floor(Math.random() * 100);
+        if(!spoop){
+            if(rnd1 < 50)
+                h++;
+            else
+                w++;
 
-        if(h > 100)
-            h = 1;
-        if(w > 100)
-            w = 1;
 
+            if(h >= 100 || w >= 100){
+                let rnd2 = Math.floor(Math.random() * 100);
+                if(rnd2 < 20){
+                    scareJump();
+                }
+            }
+
+            h = h % 100;
+            w = w % 100;
+        }
         setTimeout(upTheYuzu, 10);
     }
 
 
     let yuzu = document.getElementById("yuzu");
+    let main = document.getElementById("main");
     let h = 1;
     let w = 1;
+
+    //dynamic resource test
+
     upTheYuzu();
 
 </script>
